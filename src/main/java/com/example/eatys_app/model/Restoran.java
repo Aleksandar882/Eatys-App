@@ -2,6 +2,9 @@ package com.example.eatys_app.model;
 
 import jakarta.persistence.*;
 
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "restoran", schema = "project")
 public class Restoran {
@@ -11,26 +14,32 @@ public class Restoran {
         @Column(name = "restoran_id", nullable = false)
         private Integer id;
 
-        @Column(name = "restoran_ime", nullable = false)
+        @Column(name = "restoran_ime")
         private String ime;
 
-        @Column(name = "restoran_rejting", nullable = false)
+        @Column(name = "restoran_rejting")
         private Integer rejting;
 
-        @Column(name = "restoran_adresa", nullable = false)
+        @Column(name = "restoran_adresa")
         private String adresa;
 
-        @Column(name = "user_id", nullable = false)
-        private Integer user_id;
+
+        @OneToOne(cascade = CascadeType.ALL)
+        @JoinColumn(name = "user_id")
+        private Menadzer menadzer;
+
+
 
         public Restoran() {
         }
 
-        public Restoran(String ime, Integer rejting, String adresa, Integer user_id) {
+
+
+        public Restoran(String ime, Integer rejting, String adresa, Menadzer menadzer) {
                 this.ime = ime;
                 this.rejting = rejting;
                 this.adresa = adresa;
-                this.user_id = user_id;
+                this.menadzer = menadzer;
         }
 
         public Integer getId() {
@@ -65,11 +74,13 @@ public class Restoran {
                 this.adresa = adresa;
         }
 
-        public Integer getUser_id() {
-                return user_id;
+        public Menadzer getMenadzer() {
+                return menadzer;
         }
 
-        public void setUser_id(Integer user_id) {
-                this.user_id = user_id;
+        public void setMenadzer(Menadzer menadzer) {
+                this.menadzer = menadzer;
         }
+
+
 }

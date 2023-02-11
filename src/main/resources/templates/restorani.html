@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Restorani</title>
+</head>
+<body>
+
+<div>
+    <div>
+        <h1>Добредојдовте на Eaty's</span></h1>
+        <!-- ForumUsersController.showAdd (Only ADMIN can see this element)-->
+        <a href="/restorani/add" class="add-item" >
+            Додади нов ресторан
+        </a>
+        <h2>Ресторани:</h2>
+    </div>
+    <table>
+        <tr>
+            <th>Име</th>
+            <th>Рејтинг</th>
+            <th>Адреса</th>
+
+        </tr>
+        <!-- For each user you should have one <tr> like below -->
+        <tr class="item"  th:each="restoran: ${restorani}">
+            <td th:text="${restoran.ime}">[restoran.ime]</td>
+            <td th:text="${restoran.rejting}">[restoran.rejting]</td>
+            <td th:text="${restoran.adresa}">[restoran.adresa]</td>
+
+            <td>
+                <!-- ForumUsersController.delete (Only ADMIN can see this element)-->
+                <form method="POST" th:action="@{'/restorani/{id}/delete' (id=${restoran.id})}" >
+                    <button type="submit" class="delete-item">Избриши</button>
+                </form>
+                <!-- ForumUsersController.showEdit (Only ADMIN can see this element)-->
+                <a th:href="@{'/restorani/{id}/edit' (id=${restoran.id})}"  class="edit-item" >Едитирај</a>
+            </td>
+        </tr>
+    </table>
+
+</div>
+<!--<div>-->
+<!--    <ul id="nav">-->
+<!--        <li><a href="/">Home</a></li>-->
+<!--        <li><a href="/login">Login</a></li>-->
+<!--        <a th:href="@{/oauth2/authorization/facebook}">Login with Facebook</a>-->
+<!--        <li><a href="/logout">Logout</a></li>-->
+<!--    </ul>-->
+<!--</div>-->
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>WP Exam</title>
+</head>
+<body>
+
+<form method="POST" th:action="@{'/restorani/{id}' (id=${restoran?.id})}">
+    <div>
+        <label for="f1">Ime</label>
+        <input type="text"
+               id="f1"
+               name="ime"
+               th:value="${restoran?.ime}"
+               required>
+    </div>
+    <div>
+        <label for="f2">Rejting</label>
+        <input type="number"
+               id="f2"
+               name="rejting"
+               th:value="${restoran?.rejting}"
+               required>
+    </div>
+    <div>
+        <label for="f3">Adresa</label>
+        <input type="text"
+               id="f3"
+               name="adresa"
+               th:value="${restoran?.adresa}"
+               required>
+    </div>
+    <div>
+        <label>Menadzer</label><br/>
+        <select id="f4" name="menadzerId">
+            <option th:each="menadzer: ${menadzeri}" th:value="${menadzer.id}" th:text="${menadzer.id}"> [menadzer_id]</option>
+        </select>
+    </div>
+
+    <button id="submit" type="submit">Submit</button>
+    <a id="back" href="/restorani" type="button" class="btn btn-primary">Back to restorani</a>
+</form>
+
+<div>
+    <ul id="nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/logout">Logout</a></li>
+    </ul>
+</div>
+
+</body>
+</html>
