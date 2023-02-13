@@ -24,7 +24,7 @@ public class Restoran {
         private String adresa;
 
 
-        @OneToOne(cascade = CascadeType.ALL)
+        @OneToOne
         @JoinColumn(name = "user_id")
         private Menadzer menadzer;
 

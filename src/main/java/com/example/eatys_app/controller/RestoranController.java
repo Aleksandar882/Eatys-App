@@ -30,7 +30,7 @@ public class RestoranController {
     }
 
 
-    @GetMapping({"/", "/restorani"})
+    @GetMapping({"/", "/restorani" })
     public String showList(Model model){
         List<Restoran> restorani= this.restoranService.listAll();
         List<Menadzer>menadzeri=this.menadzerService.listAll();
@@ -58,7 +58,7 @@ public class RestoranController {
         return "form.html";
     }
 
-    @PostMapping("/restorani")
+    @PostMapping("/restorani/")
     public String create(@RequestParam String ime,
                          @RequestParam Integer rejting,
                          @RequestParam String adresa,
