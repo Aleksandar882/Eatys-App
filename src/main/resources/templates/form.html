@@ -7,7 +7,7 @@
 
 <form method="POST" th:action="@{'/restorani/{id}' (id=${restoran?.id})}">
     <div>
-        <label for="f1">Ime</label>
+        <label for="f1">Име</label>
         <input type="text"
                id="f1"
                name="ime"
@@ -15,7 +15,7 @@
                required>
     </div>
     <div>
-        <label for="f2">Rejting</label>
+        <label for="f2">Рејтинг</label>
         <input type="number"
                id="f2"
                name="rejting"
@@ -23,7 +23,7 @@
                required>
     </div>
     <div>
-        <label for="f3">Adresa</label>
+        <label for="f3">Адреса</label>
         <input type="text"
                id="f3"
                name="adresa"
@@ -31,14 +31,14 @@
                required>
     </div>
     <div>
-        <label>Menadzer</label><br/>
+        <label>Менаџер</label><br/>
         <select id="f4" name="menadzerId">
-            <option th:each="menadzer: ${menadzeri}" th:value="${menadzer.id}" th:text="${menadzer.id}"> [menadzer_id]</option>
+            <option th:each="menadzer: ${menadzeri}" th:value="${menadzer.id}" th:text="${menadzer.ime}"> [menadzer_id]</option>
         </select>
     </div>
 
     <button id="submit" type="submit">Submit</button>
-    <a id="back" href="/restorani" type="button" class="btn btn-primary">Back to restorani</a>
+    <a id="back" href="/restorani" type="button" class="btn btn-primary">Назад до ресторани</a>
 </form>
 
 <div>

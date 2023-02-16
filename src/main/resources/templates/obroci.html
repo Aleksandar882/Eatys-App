@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Eaty's</title>
+</head>
+<body>
+
+<div>
+    <ul id="navbar">
+        <li><a href="/">Почетна</a></li>
+        <li><a href="/menija">Менија</a></li>
+        <li><a href="/obroci">Оброци</a></li>
+    </ul>
+</div>
+
+<div>
+    <div>
+
+        <!-- ForumUsersController.showAdd (Only ADMIN can see this element)-->
+        <a href="/obroci/add" class="add-item" >
+            Додади нов оброк
+        </a>
+        <h2>Оброци:</h2>
+    </div>
+    <table>
+        <tr>
+            <th>Име</th>
+            <th>Опис</th>
+            <th>Тип</th>
+            <th>Оброк од ресторан</th>
+
+        </tr>
+        <!-- For each user you should have one <tr> like below -->
+        <tr class="item"  th:each="obrok: ${obroci}">
+            <td th:text="${obrok.ime}">[obrok.ime]</td>
+            <td th:text="${obrok.opis}">[obrok.opis]</td>
+            <td th:text="${obrok.meni.tip.ime}">[obrok.meni.tip.ime]</td>
+            <td th:text="${obrok.meni.restoran.ime}">[obrok.meni.restoran.ime]</td>
+
+            <td>
+                <!-- ForumUsersController.delete (Only ADMIN can see this element)-->
+                <form method="POST" th:action="@{'/obroci/{id}/delete' (id=${obrok.id})}" >
+                    <button type="submit" class="delete-item">Избриши</button>
+                </form>
+                <!-- ForumUsersController.showEdit (Only ADMIN can see this element)-->
+                <a th:href="@{'/obroci/{id}/edit' (id=${obrok.id})}"  class="edit-item" >Едитирај</a>
+            </td>
+        </tr>
+    </table>
+
+</div>
+<!--<div>-->
+<!--    <ul id="nav">-->
+<!--        <li><a href="/">Home</a></li>-->
+<!--        <li><a href="/login">Login</a></li>-->
+<!--        <a th:href="@{/oauth2/authorization/facebook}">Login with Facebook</a>-->
+<!--        <li><a href="/logout">Logout</a></li>-->
+<!--    </ul>-->
+<!--</div>-->
+</body>
+</html>

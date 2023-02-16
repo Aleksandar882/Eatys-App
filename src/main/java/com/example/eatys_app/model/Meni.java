@@ -17,10 +17,17 @@ public class Meni {
     private Restoran restoran;
 
 
+    @OneToOne
+    @JoinColumn(name = "tip_id")
+    private Tip tip;
+
     public Meni() {
     }
 
-
+    public Meni(Restoran restoran, Tip tip) {
+        this.restoran = restoran;
+        this.tip = tip;
+    }
 
     public Integer getId() {
         return id;
@@ -36,5 +43,13 @@ public class Meni {
 
     public void setRestoran(Restoran restoran) {
         this.restoran = restoran;
+    }
+
+    public Tip getTip() {
+        return tip;
+    }
+
+    public void setTip(Tip tip) {
+        this.tip = tip;
     }
 }

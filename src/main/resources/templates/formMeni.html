@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Eaty's</title>
+</head>
+<body>
+
+<form method="POST" th:action="@{'/menija/{id}' (id=${meni?.id})}">
+
+    <div>
+        <label>Tip</label><br/>
+        <select id="f1" name="tipId">
+            <option th:each="tip: ${tipovi}" th:value="${tip.id}" th:text="${tip.ime}"> [tip_id]</option>
+        </select>
+    </div>
+
+    <div>
+        <label>Restoran</label><br/>
+        <select id="f2" name="restoranId">
+            <option th:each="restoran: ${restorani}" th:value="${restoran.id}" th:text="${restoran.ime}"> [restoran_id]</option>
+        </select>
+    </div>
+
+    <button id="submit" type="submit">Submit</button>
+    <a id="back" href="/menija" type="button" class="btn btn-primary">Назад до менија</a>
+</form>
+
+<div>
+    <ul id="nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/logout">Logout</a></li>
+    </ul>
+</div>
+
+</body>
+</html>

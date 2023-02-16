@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Eaty's</title>
+</head>
+<body>
+
+<form method="POST" th:action="@{'/obroci/{id}' (id=${obrok?.id})}">
+    <div>
+        <label for="f1">Име</label>
+        <input type="text"
+               id="f1"
+               name="ime"
+               th:value="${obrok?.ime}"
+               required>
+    </div>
+    <div>
+        <label for="f2">Опис</label>
+        <input type="text"
+               id="f2"
+               name="opis"
+               th:value="${obrok?.opis}"
+               required>
+    </div>
+    <div>
+        <label>Мени</label><br/>
+        <select id="f3" name="meniId">
+            <option th:each="meni: ${menija}" th:value="${meni.id}" th:text="${meni.restoran.ime} + '(' + ${meni.tip.ime} +')'"> [meni_id]</option>
+        </select>
+    </div>
+
+    <button id="submit" type="submit">Submit</button>
+    <a id="back" href="/obroci" type="button" class="btn btn-primary">Назад до оброци</a>
+</form>
+
+<div>
+    <ul id="nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/logout">Logout</a></li>
+    </ul>
+</div>
+
+</body>
+</html>
