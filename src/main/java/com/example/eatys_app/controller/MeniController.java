@@ -1,10 +1,11 @@
 package com.example.eatys_app.controller;
 
-import com.example.eatys_app.model.Menadzer;
 import com.example.eatys_app.model.Meni;
+import com.example.eatys_app.model.Obrok;
 import com.example.eatys_app.model.Restoran;
 import com.example.eatys_app.model.Tip;
 import com.example.eatys_app.service.MeniService;
+import com.example.eatys_app.service.ObrokService;
 import com.example.eatys_app.service.RestoranService;
 import com.example.eatys_app.service.TipService;
 import org.springframework.stereotype.Controller;
@@ -23,10 +24,12 @@ public class MeniController {
     private final RestoranService restoranService;
     private final TipService tipService;
 
+
     public MeniController(MeniService meniService, RestoranService restoranService, TipService tipService) {
         this.meniService = meniService;
         this.restoranService = restoranService;
         this.tipService = tipService;
+
     }
 
     @GetMapping( "/menija" )
@@ -36,9 +39,11 @@ public class MeniController {
         List<Tip>tipovi=this.tipService.listAll();
 
 
+
         model.addAttribute("menija", menija);
         model.addAttribute("restorani", restorani);
         model.addAttribute("tipovi", tipovi);
+
 
         return "menija.html";
     }

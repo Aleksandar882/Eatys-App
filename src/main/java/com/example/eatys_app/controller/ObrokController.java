@@ -1,9 +1,9 @@
 package com.example.eatys_app.controller;
 
+import com.example.eatys_app.model.Cena;
 import com.example.eatys_app.model.Meni;
 import com.example.eatys_app.model.Obrok;
-import com.example.eatys_app.model.Restoran;
-import com.example.eatys_app.model.Tip;
+import com.example.eatys_app.service.CenaService;
 import com.example.eatys_app.service.MeniService;
 import com.example.eatys_app.service.ObrokService;
 import org.springframework.stereotype.Controller;
@@ -20,29 +20,33 @@ public class ObrokController {
 
     private final ObrokService obrokService;
     private final MeniService meniService;
+    private final CenaService cenaService;
 
 
-    public ObrokController(ObrokService obrokService, MeniService meniService) {
+    public ObrokController(ObrokService obrokService, MeniService meniService, CenaService cenaService) {
         this.obrokService = obrokService;
         this.meniService = meniService;
+        this.cenaService = cenaService;
     }
 
     @GetMapping( "/obroci" )
     public String showList(Model model){
         List<Obrok> obroci= this.obrokService.listAll();
         List<Meni> menija= this.meniService.listAll();
-
+        List<Cena> ceni= this.cenaService.listAll();
 
         model.addAttribute("obroci", obroci);
         model.addAttribute("menija", menija);
-
+        model.addAttribute("ceni", ceni);
         return "obroci.html";
     }
 
     @GetMapping("/obroci/add")
     public String showAdd(Model model) {
+        List<Cena> ceni= this.cenaService.listAll();
         List<Meni> menija= this.meniService.listAll();
         model.addAttribute("menija", menija);
+        model.addAttribute("ceni", ceni);
         return "formObrok.html";
     }
 
@@ -50,8 +54,10 @@ public class ObrokController {
     public String showEdit(@PathVariable Integer id, Model model) {
         Obrok obrok =this.obrokService.findById(id);
         List<Meni> menija= this.meniService.listAll();
+        List<Cena> ceni= this.cenaService.listAll();
         model.addAttribute("obrok", obrok);
         model.addAttribute("menija", menija);
+        model.addAttribute("ceni", ceni);
         return "formObrok.html";
     }
 
@@ -61,8 +67,10 @@ public class ObrokController {
                          @RequestParam Integer meniId
     ){
         this.obrokService.create(ime,opis,meniId);
-        return "redirect:/obroci";
+        return "redirect:/ceni/add";
     }
+
+
 
     @PostMapping("/obroci/{id}")
     public String update(@PathVariable Integer id,

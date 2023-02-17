@@ -17,11 +17,8 @@
     <div>
 
         <!-- ForumUsersController.showAdd (Only ADMIN can see this element)-->
-        <a href="/obroci/add" class="add-item" >
-            Додади нов оброк
-        </a>
-        <a href="/ceni" class="add-item" >
-            Едитирај цена на оброк
+        <a href="/ceni/add" class="add-item" >
+            Додади нова цена на оброк
         </a>
         <h2>Оброци:</h2>
     </div>
@@ -46,11 +43,9 @@
 
             <td>
                 <!-- ForumUsersController.delete (Only ADMIN can see this element)-->
-                <form method="POST" th:action="@{'/obroci/{id}/delete' (id=${cena.obrok.id})}" >
-                    <button type="submit" class="delete-item">Избриши</button>
-                </form>
+
                 <!-- ForumUsersController.showEdit (Only ADMIN can see this element)-->
-                <a th:href="@{'/obroci/{id}/edit' (id=${cena.obrok.id})}"  class="edit-item" >Едитирај</a>
+                <a th:href="@{'/ceni/{id}/edit' (id=${cena.id})}"  class="edit-item" >Едитирај</a>
             </td>
 
         </tr>
