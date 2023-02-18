@@ -2,65 +2,104 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Eaty's</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <style>
+
+        .width1 {
+            width: 27rem;
+            background: #f3f3f3;
+            border-radius: 7px;
+            padding: 1rem;
+            margin-top: 5vh;
+        }
+
+    </style>
+
 </head>
 <body>
 
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand ml-4" href="/">Eaty's</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item ">
+                <a class="nav-link" href="/">Почетна <span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/menija">Менија</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/obroci">Оброци</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/login">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="d-flex text-center justify-content-center">
+    <div class="width1">
 <form method="POST" th:action="@{'/ceni/{id}' (id=${cena?.id})}">
+    <h1>Додади нова цена на оброк</h1>
 
-
-    <div>
+    <div class="form-group mb-3">
         <label for="f1">Бр.Цена</label>
-        <input type="number"
+        <input type="number" class="form-control form-control-lg"
                id="f1"
                name="id"
                th:value="${cena?.id}"
                required>
     </div>
 
-    <div>
+    <div class="form-group mb-3">
         <label>Оброк</label><br/>
-        <select id="f2" name="obrokId">
+        <select id="f2" name="obrokId" class="form-control-lg">
             <option th:each="obrok: ${obroci}" th:value="${obrok.id}" th:text="${obrok.ime}"> [obrok_id]</option>
         </select>
     </div>
 
-    <div>
+    <div class="form-group mb-3">
         <label for="f3">Износ</label>
-        <input type="number"
+        <input type="number" class="form-control form-control-lg"
                id="f3"
                name="cenaIznos"
                th:value="${cena?.cenaIznos}"
                required>
     </div>
-    <div>
+    <div class="form-group mb-3">
         <label for="f4">Важи Од</label>
-        <input type="date"
+        <input type="date" class="form-control form-control-lg"
                id="f4"
                name="cenaVaziOd"
                th:value="${cena?.CenaVaziOd}"
                required>
     </div>
 
-    <div>
+    <div class="form-group mb-3">
         <label for="f5">Важи До </label>
-        <input type="date"
+        <input type="date" class="form-control form-control-lg"
                id="f5"
                name="cenaVaziDo"
                th:value="${cena?.CenaVaziDo}"
                required>
     </div>
 
-    <button id="submit" type="submit">Submit</button>
+    <button id="submit" type="submit" class="btn btn-info">Додади</button>
     <a id="back" href="/ceni" type="button" class="btn btn-primary">Назад до оброци</a>
 </form>
-
-<div>
-    <ul id="nav">
-        <li><a href="/">Home</a></li>
-        <li><a href="/login">Login</a></li>
-        <li><a href="/logout">Logout</a></li>
-    </ul>
+    </div>
 </div>
+
+
 
 </body>
 </html>
