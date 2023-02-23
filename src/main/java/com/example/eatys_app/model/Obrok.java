@@ -2,6 +2,9 @@ package com.example.eatys_app.model;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "obrok", schema = "project")
 public class Obrok {
@@ -20,6 +23,11 @@ public class Obrok {
     @ManyToOne
     @JoinColumn(name = "meni_id", nullable = false)
     private Meni meni;
+
+    @OneToMany(mappedBy = "obrok")
+    private Set<SeSostoiOd> obrokEVoNaracka = new HashSet<SeSostoiOd>();
+
+
 
     public Obrok() {
     }
@@ -62,5 +70,13 @@ public class Obrok {
 
     public void setMeni(Meni meni) {
         this.meni = meni;
+    }
+
+    public Set<SeSostoiOd> getObrokEVoNaracka() {
+        return obrokEVoNaracka;
+    }
+
+    public void setObrokEVoNaracka(Set<SeSostoiOd> obrokEVoNaracka) {
+        this.obrokEVoNaracka = obrokEVoNaracka;
     }
 }

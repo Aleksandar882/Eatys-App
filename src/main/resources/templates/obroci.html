@@ -75,6 +75,13 @@
                 </form>
                 <!-- ForumUsersController.showEdit (Only ADMIN can see this element)-->
                 <a th:href="@{'/obroci/{id}/edit' (id=${cena.obrok.id})}"  class="btn btn-warning btn-sm pr-5" >Едитирај</a>
+
+                <form class="custom-inline" th:action="@{'/se-sostoi-od/add-obrok/{id}' (id=${cena.obrok.id})}"
+                      th:method="POST">
+                    <button type="submit"
+                            class="btn btn-danger btn-sm mb-3">Add to Cart
+                    </button>
+                </form>
             </td>
 
         </tr>
