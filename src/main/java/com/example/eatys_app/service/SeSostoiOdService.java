@@ -10,4 +10,6 @@ public interface SeSostoiOdService {
 
     public Naracka getActiveShoppingCart(String username);
 
+    SeSostoiOd delete(String kupuvacName, Integer obrokId);
+
 }

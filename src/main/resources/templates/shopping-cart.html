@@ -60,14 +60,12 @@
             <td th:text="${obrok.kolicina}">[obrok.kolicina]</td>
             <td th:text="${obrok.cena}">[obrok.cena]</td>
 
-<!--            <td>-->
-<!--                &lt;!&ndash; ForumUsersController.delete (Only ADMIN can see this element)&ndash;&gt;-->
-<!--                <form method="POST" th:action="@{'/restorani/{id}/delete' (id=${restoran.id})}" >-->
-<!--                    <button type="submit" class="btn btn-danger btn-sm mb-3">Избриши</button>-->
-<!--                </form>-->
-<!--                &lt;!&ndash; ForumUsersController.showEdit (Only ADMIN can see this element)&ndash;&gt;-->
-<!--                <a th:href="@{'/restorani/{id}/edit' (id=${restoran.id})}"  class="btn btn-warning btn-sm pr-5" >Едитирај</a>-->
-<!--            </td>-->
+            <td>
+                <!-- ForumUsersController.delete (Only ADMIN can see this element)-->
+                <form method="POST" th:action="@{'/se-sostoi-od/delete-obrok/{id}' (id=${obrok.obrok.id})}" >
+                    <button type="submit" class="btn btn-danger btn-sm mb-3">Избриши Оброк</button>
+                </form>
+            </td>
         </tr>
         </tbody>
     </table>

@@ -39,6 +39,17 @@ public class SeSostoiOdServiceImpl implements SeSostoiOdService {
     }
 
     @Override
+    public SeSostoiOd delete(String kupuvacName, Integer obrokId) {
+        Kupuvac kupuvac=this.kupuvacRepository.findByIme(kupuvacName).orElseThrow(KupuvacNotFoundException2::new);
+        Naracka naracka=this.narackaRepository.findByKupuvac(kupuvac).orElseThrow(NarackaNotFoundException2::new);
+        Obrok obrok=this.obrokRepository.findById(obrokId).orElseThrow(InvalidObrokIdException::new);
+        SeSostoiOd seSostoiOd=this.seSostoiOdRepository.findByNarackaAndObrok(naracka,obrok).orElseThrow(InvalidNarackaAndObrokException::new);
+        this.seSostoiOdRepository.delete(seSostoiOd);
+        return seSostoiOd;
+    }
+
+
+    @Override
     public Naracka getActiveShoppingCart(String username) {
 
         Kupuvac kupuvac = this.kupuvacRepository.findByIme(username)

@@ -23,13 +23,26 @@ public class SeSostoiOdController {
 
     @PostMapping("/add-obrok/{id}")
     public String addObrokToShoppingCart(@PathVariable Integer id, Authentication authentication, HttpServletRequest req) {
-            try {
-                String username = req.getRemoteUser();
-                this.seSostoiOdService.create(username, id);
-                return "redirect:/shopping-cart";
-            } catch (RuntimeException exception) {
-                return "redirect:/shopping-cart?error=" + exception.getMessage();
-            }
+        try {
+            String username = req.getRemoteUser();
+            this.seSostoiOdService.create(username, id);
+            return "redirect:/shopping-cart";
+        } catch (RuntimeException exception) {
+            return "redirect:/shopping-cart?error=" + exception.getMessage();
+        }
+
+
+    }
+
+    @PostMapping("/delete-obrok/{id}")
+    public String deleteObrokFromShoppingCart(@PathVariable Integer id, Authentication authentication, HttpServletRequest req) {
+        try {
+            String username = req.getRemoteUser();
+            this.seSostoiOdService.delete(username, id);
+            return "redirect:/shopping-cart";
+        } catch (RuntimeException exception) {
+            return "redirect:/shopping-cart?error=" + exception.getMessage();
+        }
 
 
 
