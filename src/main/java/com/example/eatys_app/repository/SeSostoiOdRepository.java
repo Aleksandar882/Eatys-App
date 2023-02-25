@@ -11,4 +11,6 @@ public interface SeSostoiOdRepository extends JpaRepository<SeSostoiOd, SeSostoi
 
     Optional<SeSostoiOd> findByNarackaAndObrok(Naracka naracka, Obrok obrok);
 
+     void deleteAllByNaracka(Naracka naracka);
+
 }

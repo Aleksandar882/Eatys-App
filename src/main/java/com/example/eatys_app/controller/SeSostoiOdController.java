@@ -22,10 +22,10 @@ public class SeSostoiOdController {
     }
 
     @PostMapping("/add-obrok/{id}")
-    public String addObrokToShoppingCart(@PathVariable Integer id, Authentication authentication, HttpServletRequest req) {
+    public String addObrokToShoppingCart(@PathVariable Integer id,@RequestParam Integer kolicina, Authentication authentication, HttpServletRequest req) {
         try {
             String username = req.getRemoteUser();
-            this.seSostoiOdService.create(username, id);
+            this.seSostoiOdService.create(username, id, kolicina);
             return "redirect:/shopping-cart";
         } catch (RuntimeException exception) {
             return "redirect:/shopping-cart?error=" + exception.getMessage();
@@ -44,7 +44,17 @@ public class SeSostoiOdController {
             return "redirect:/shopping-cart?error=" + exception.getMessage();
         }
 
+    }
 
+    @PostMapping("/payment")
+    public String paymentFromShoppingCart(Authentication authentication, HttpServletRequest req) {
+        try {
+            String username = req.getRemoteUser();
+            this.seSostoiOdService.payment(username);
+            return "naplata.html";
+        } catch (RuntimeException exception) {
+            return "redirect:/shopping-cart?error=" + exception.getMessage();
+        }
 
     }
 

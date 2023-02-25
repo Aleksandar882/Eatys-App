@@ -40,6 +40,20 @@ public class NarackaServiceImpl implements NarackaService{
     }
 
     @Override
+    public int Total(Integer cartId) {
+        if(!this.narackaRepository.findById(cartId).isPresent())
+            throw new NarackaNotFoundException(cartId);
+        Set<SeSostoiOd> se_sostoi_od=this.narackaRepository.findById(cartId).get().getNarackaSeSostoiOd();
+//        se_sostoi_od.forEach(SeSostoiOd::getCena);
+        int total_cena=0;
+        for (SeSostoiOd seSostoiOd : se_sostoi_od)
+        {
+            total_cena=total_cena+seSostoiOd.getCena();
+        }
+            return total_cena;
+    }
+
+    @Override
     public Naracka getActiveShoppingCart(String username) {
 
         Kupuvac kupuvac = this.kupuvacRepository.findByIme(username)

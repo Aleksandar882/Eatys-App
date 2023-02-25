@@ -26,5 +26,7 @@ public interface NarackaService {
 
      SeSostoiOd addObrokToShoppingCart(String username, Integer obrokId);
 
+    public int Total(Integer cartId);
+
 
 }

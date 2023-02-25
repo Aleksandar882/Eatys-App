@@ -7,6 +7,7 @@ import com.example.eatys_app.model.Obrok;
 import com.example.eatys_app.model.SeSostoiOd;
 import com.example.eatys_app.model.exceptions.*;
 import com.example.eatys_app.repository.*;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -28,12 +29,11 @@ public class SeSostoiOdServiceImpl implements SeSostoiOdService {
 
 
     @Override
-    public SeSostoiOd create(String kupuvacName, Integer obrokId) {
+    public SeSostoiOd create(String kupuvacName, Integer obrokId, Integer kolicina) {
         Kupuvac kupuvac=this.kupuvacRepository.findByIme(kupuvacName).orElseThrow(KupuvacNotFoundException2::new);
         Naracka naracka=this.narackaRepository.findByKupuvac(kupuvac).orElseThrow(NarackaNotFoundException2::new);
-        Integer kolicina=1;
         Obrok obrok=this.obrokRepository.findById(obrokId).orElseThrow(InvalidObrokIdException::new);
-        Integer cena=this.cenaRepository.findByObrok(obrok).orElseThrow(InvalidObrokIdException::new).getCenaIznos();
+        Integer cena=this.cenaRepository.findByObrok(obrok).orElseThrow(InvalidObrokIdException::new).getCenaIznos()*kolicina;
         SeSostoiOd seSostoiOd = new SeSostoiOd(naracka,obrok,kolicina,cena);
         return this.seSostoiOdRepository.save(seSostoiOd);
     }
@@ -50,6 +50,14 @@ public class SeSostoiOdServiceImpl implements SeSostoiOdService {
 
 
     @Override
+    public void payment(String kupuvacName) {
+        Kupuvac kupuvac=this.kupuvacRepository.findByIme(kupuvacName).orElseThrow(KupuvacNotFoundException2::new);
+        Naracka naracka=this.narackaRepository.findByKupuvac(kupuvac).orElseThrow(NarackaNotFoundException2::new);
+        this.narackaRepository.delete(naracka);
+    }
+
+
+    @Override
     public Naracka getActiveShoppingCart(String username) {
 
         Kupuvac kupuvac = this.kupuvacRepository.findByIme(username)
@@ -61,6 +69,5 @@ public class SeSostoiOdServiceImpl implements SeSostoiOdService {
                     Naracka cart = new Naracka(kupuvac);
                     return this.narackaRepository.save(cart);
                 });
-
     }
 }

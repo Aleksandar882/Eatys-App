@@ -31,7 +31,9 @@ public class NarackaController {
         Naracka shoppingCart = this.narackaService.getActiveShoppingCart(username);
 //        double prices=this.narackaService.getPrice(shoppingCart.getId());
 //        model.addAttribute("amount", (int)prices * 100); // in cents
+        int prices=this.narackaService.Total(shoppingCart.getId());
         model.addAttribute("obroci", this.narackaService.listAllObrociInShoppingCart(shoppingCart.getId()));
+        model.addAttribute("amount", prices);
         return "shopping-cart.html";
     }
 
