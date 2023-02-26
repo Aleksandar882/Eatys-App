@@ -13,7 +13,7 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="/">Почетна <span class="sr-only"></span></a>
             </li>
             <li class="nav-item">
@@ -24,9 +24,6 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/shopping-cart">Купувачка кошничка</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/rezervacii">Мои резервации</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/login">Login</a>
@@ -46,35 +43,36 @@
 
 <div>
     <div>
-        <h1 class="text-left">Добредојдовте на Eaty's</span></h1>
-        <a href="/restorani/add" class="btn btn-info" >
-            Додади нов ресторан
+        <a href="/rezervacii/add" class="btn btn-info" >
+            Креирај нова резервација
         </a>
-        <h2 class="text-center">Ресторани</h2>
+        <h2 class="text-center"> Мои Резервации</h2>
     </div>
     <table class="table table-striped table-dark">
         <thead>
         <tr>
-            <th scope="col">Име</th>
-            <th scope="col">Рејтинг</th>
-            <th scope="col">Адреса</th>
+            <th scope="col">Ресторан</th>
+            <th scope="col">Време</th>
+            <th scope="col">Бр. Луѓе</th>
+            <th scope="col">Опис</th>
             <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
-
-        <tr class="item"  th:each="restoran: ${restorani}">
-            <td th:text="${restoran.ime}">[restoran.ime]</td>
-            <td th:text="${restoran.rejting}">[restoran.rejting]</td>
-            <td th:text="${restoran.adresa}">[restoran.adresa]</td>
+        <!-- For each user you should have one <tr> like below -->
+        <tr class="item"  th:each="rezervacija: ${rezervacii}">
+            <td th:text="${rezervacija.restoran.ime}">[rezervacija.restoran.ime]</td>
+            <td th:text="${rezervacija.vreme}">[rezervacija.vreme]</td>
+            <td th:text="${rezervacija.lugje}">[rezervacija.lugje]</td>
+            <td th:text="${rezervacija.opis}">[rezervacija.opis]</td>
 
             <td>
 
-                <form method="POST" th:action="@{'/restorani/{id}/delete' (id=${restoran.id})}" >
-                    <button type="submit" class="btn btn-danger btn-sm mb-3">Избриши</button>
+                <form method="POST" th:action="@{'/rezervacii/{id}/delete' (id=${rezervacija.id})}" >
+                    <button type="submit" class="btn btn-danger btn-sm mb-3">Откажи</button>
                 </form>
 
-                <a th:href="@{'/restorani/{id}/edit' (id=${restoran.id})}"  class="btn btn-warning btn-sm pr-5" >Едитирај</a>
+                <a th:href="@{'/rezervacii/{id}/edit' (id=${rezervacija.id})}"  class="btn btn-warning btn-sm pr-5" >Едитирај</a>
             </td>
         </tr>
         </tbody>

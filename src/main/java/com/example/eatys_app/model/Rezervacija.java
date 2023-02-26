@@ -3,6 +3,7 @@ package com.example.eatys_app.model;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 @Table(name = "rezervacija", schema = "project")
@@ -14,7 +15,7 @@ public class Rezervacija {
     private Integer id;
 
     @Column(name = "rezervacija_vreme", nullable = false)
-    private Timestamp vreme;
+    private Date vreme;
 
     @Column(name = "br_lugje", nullable = false)
     private Integer lugje;
@@ -25,7 +26,7 @@ public class Rezervacija {
     @Column(name = "rezervacija_opis", nullable = false, length = 10000)
     private String opis;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "restoran_id")
     private Restoran restoran;
 
@@ -36,7 +37,7 @@ public class Rezervacija {
     public Rezervacija() {
     }
 
-    public Rezervacija(Timestamp vreme, Integer lugje, String status, String opis, Restoran restoran, Kupuvac kupuvac) {
+    public Rezervacija(Date vreme, Integer lugje, String status, String opis, Restoran restoran, Kupuvac kupuvac) {
         this.vreme = vreme;
         this.lugje = lugje;
         this.status = status;
@@ -53,11 +54,11 @@ public class Rezervacija {
         this.id = id;
     }
 
-    public Timestamp getVreme() {
+    public Date getVreme() {
         return vreme;
     }
 
-    public void setVreme(Timestamp vreme) {
+    public void setVreme(Date vreme) {
         this.vreme = vreme;
     }
 
