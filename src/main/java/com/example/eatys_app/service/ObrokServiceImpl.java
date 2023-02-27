@@ -54,4 +54,10 @@ public class ObrokServiceImpl implements ObrokService{
         this.obrokRepository.delete(obrok);
         return obrok;
     }
+
+    @Override
+    public List<Obrok> listObrociByMeni(Integer meniId) {
+        Meni meni=this.meniRepository.findById(meniId).orElseThrow(InvalidMeniIdException::new);
+            return this.obrokRepository.findAllByMeni(meni);
+    }
 }

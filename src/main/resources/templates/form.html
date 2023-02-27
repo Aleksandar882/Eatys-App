@@ -3,92 +3,168 @@
 <head>
     <title>Eaty's</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-   <style>
+    <style>
 
-       .width1 {
-           width: 27rem;
-           background: #f3f3f3;
-           border-radius: 7px;
-           padding: 1rem;
-           margin-top: 5vh;
-       }
+        .width1 {
+            width: 27rem;
+            background: #f3f3f3;
+            border-radius: 7px;
+            padding: 1rem;
+            margin-top: 5vh;
+        }
 
-   </style>
+        body {
+            background-color: rgb(24, 25, 26);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 15px 0;
+            color: white;
+            background: #262626;
+        }
+
+        footer li {
+            float: left;
+            padding: 0 10px;
+            list-style: none;
+        }
+
+        footer a {
+            color: white;
+        }
+
+        footer p {
+            float: right;
+        }
+
+        .linkovi {
+            text-decoration: none;
+            color: white;
+            padding: 0 10px;
+        }
+
+        .lists {
+            list-style-type: none;
+        }
+
+        .accountnamestyle{
+            list-style-type: none;
+            text-decoration: none;
+            color: orangered;
+            padding: 0 10px;
+            margin-right: 5px;
+        }
+        .usericonstyle{
+            margin-left: 10px;
+        }
+
+    </style>
 
 
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand ml-4" href="/">Eaty's</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item ">
-                <a class="nav-link" href="/">Почетна <span class="sr-only"></span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/menija">Менија</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/obroci">Оброци</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/login">Login</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/logout">Logout</a>
-            </li>
-        </ul>
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Eaty's</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mynavbar">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/menija">Менија</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/obroci">Оброци</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/rezervacii">Резервации</a>
+                </li>
+            </ul>
+            <form class="d-flex">
+                <li class="lists"><a class="linkovi" href="/shopping-cart"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i></a></li>
+                <li class="lists"><a class="linkovi" href="/register">Регистрација</a></li>
+                <li class="lists"><a class="linkovi" sec:authorize="!isAuthenticated()" href="/login">Логин</a></li>
+                <li class="lists"><a class="linkovi" sec:authorize="isAuthenticated()" href="/logout">Одјава</a></li>
+                <li class="lists">
+                    <i class="fa fa-user-o usericonstyle" sec:authorize="isAuthenticated()" aria-hidden="true">
+                        <span class="accountnamestyle"    sec:authentication="name"></span>
+                    </i>
+                </li>
+            </form>
+        </div>
     </div>
 </nav>
 
 <div class="d-flex text-center justify-content-center">
-    <div class="width1">
-<form method="POST" th:action="@{'/restorani/{id}' (id=${restoran?.id})}">
-    <h1>Додади нов ресторан</h1>
-
-    <div class="form-group mb-3">
-        <label for="f1">Име</label>
-        <input type="text" class="form-control form-control-lg"
-               id="f1"
-               name="ime"
-               th:value="${restoran?.ime}"
-               required>
-    </div>
-    <div class="form-group mb-3">
-        <label for="f2">Рејтинг</label>
-        <input type="number" class="form-control form-control-lg"
-               id="f2"
-               name="rejting"
-               th:value="${restoran?.rejting}"
-               required>
-    </div>
-    <div class="form-group mb-3">
-        <label for="f3">Адреса</label>
-        <input type="text" class="form-control form-control-lg"
-               id="f3"
-               name="adresa"
-               th:value="${restoran?.adresa}"
-               required>
-    </div>
-    <div class="form-group mb-3">
-        <label>Менаџер</label><br/>
-        <select id="f4" name="menadzerId" class="form-control-lg">
-            <option th:each="menadzer: ${menadzeri}" th:value="${menadzer.id}" th:text="${menadzer.ime}"> [menadzer_id]</option>
-        </select>
-    </div>
-
-    <button id="submit" type="submit" class="btn btn-info">Додади</button>
-    <a id="back" href="/restorani" type="button" class="btn btn-primary">Назад до ресторани</a>
-</form>
+    <div class="width1 bg-dark">
+        <form method="POST" th:action="@{'/restorani/{id}' (id=${restoran?.id})}">
+            <h1>Додади нов ресторан</h1>
+            <br>
+            <div class="form-group mb-3">
+                <label for="f1">Име:</label>
+                <input type="text" class="form-control form-control-lg"
+                       id="f1"
+                       name="ime"
+                       th:value="${restoran?.ime}"
+                       required>
+            </div>
+            <div class="form-group mb-3">
+                <label for="f2">Рејтинг:</label>
+                <input type="number" class="form-control form-control-lg"
+                       id="f2"
+                       name="rejting"
+                       th:value="${restoran?.rejting}"
+                       required>
+            </div>
+            <div class="form-group mb-3">
+                <label for="f3">Адреса:</label>
+                <input type="text" class="form-control form-control-lg"
+                       id="f3"
+                       name="adresa"
+                       th:value="${restoran?.adresa}"
+                       required>
+            </div>
+            <div class="form-group mb-3">
+                <label>Менаџер:</label><br/>
+                <select id="f4" name="menadzerId" class="form-control-lg">
+                    <option th:each="menadzer: ${menadzeri}" th:value="${menadzer.id}" th:text="${menadzer.ime}"> [menadzer_id]</option>
+                </select>
+            </div>
+            <br>
+            <button id="submit" type="submit" class="btn btn-info">Додади</button>
+            <a id="back" href="/restorani" type="button" class="btn btn-primary">Назад до ресторани</a>
+        </form>
     </div>
 </div>
 
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ul>
+                    <li><a href="/">За Нас</a></li>
+                    <li><a href="/">ЧПП</a></li>
+                    <li><a href="/">Контакт</a></li>
+                    <li><a href="/"></a></li>
+                    <p>&copy; Сите права задржани. <a href="/">Eaty's Скопје</a></p>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
 
 </body>
 </html>

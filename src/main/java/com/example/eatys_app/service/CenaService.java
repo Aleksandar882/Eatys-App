@@ -21,4 +21,5 @@ public interface CenaService {
 
     Cena delete(Integer id);
 
+    List<Cena> listCeniByObrok(Integer meniId);
 }

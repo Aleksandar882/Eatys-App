@@ -15,35 +15,77 @@
             margin-top: 5vh;
         }
 
+        body {
+            background-color: rgb(24, 25, 26);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 15px 0;
+            color: white;
+            background: #262626;
+        }
+
+        footer li {
+            float: left;
+            padding: 0 10px;
+            list-style: none;
+        }
+
+        footer a {
+            color: white;
+        }
+
+        footer p {
+            float: right;
+        }
+
+        .linkovi {
+            text-decoration: none;
+            color: white;
+            padding: 0 10px;
+        }
+
+        .lists {
+            list-style-type: none;
+        }
+
+        .bttns {
+            color: white;
+        }
+
     </style>
 
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand ml-4" href="/">Eaty's</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item ">
-                <a class="nav-link" href="/">Почетна <span class="sr-only"></span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/menija">Менија</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/obroci">Оброци</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/login">Login</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/logout">Logout</a>
-            </li>
-        </ul>
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Eaty's</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mynavbar">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/menija">Менија</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/obroci">Оброци</a>
+                </li>
+            </ul>
+            <form class="d-flex">
+                <li class="lists"><a class="linkovi" sec:authorize="!isAuthenticated()" href="/login">Логин</a></li>
+            </form>
+        </div>
     </div>
 </nav>
 
@@ -52,35 +94,52 @@
 </div>
 <div class="container">
     <div class="d-flex text-center justify-content-center">
-        <div class="width1">
+        <div class="width1 bg-dark" >
             <form class="form-signin mt-xl-5" method="post" action="/register">
-                <h2 class="form-signin-heading">Register</h2>
+                <h2 class="form-signin-heading">Регистрација</h2>
+                <br>
                 <p>
-                    <label for="ime" class="sr-only">Username</label>
+                    <label for="ime" class="sr-only">Корисничко име:</label>
                     <input type="text" id="ime" name="ime" class="form-control" placeholder="Username" required=""
                            autofocus="">
                 </p>
                 <p>
-                    <label for="prezime" class="sr-only">Username</label>
-                    <input type="text" id="prezime" name="prezime" class="form-control" placeholder="Prezime" required=""
+                    <label for="prezime" class="sr-only">Потврдете корисничко име:</label>
+                    <input type="text" id="prezime" name="prezime" class="form-control" placeholder="Confirm Username" required=""
                            autofocus="">
                 </p>
                 <p>
-                    <label for="password" class="sr-only">Password</label>
+                    <label for="password" class="sr-only">Лозинка:</label>
                     <input type="password" id="password" name="password" class="form-control"
                            placeholder="Password" required="">
                 </p>
                 <p>
-                    <label for="repeatedPassword" class="sr-only">Repeat Password</label>
+                    <label for="repeatedPassword" class="sr-only">Потврдете лозинка:</label>
                     <input type="password" id="repeatedPassword" name="repeatedPassword" class="form-control"
-                           placeholder="Repeat Password" required="">
+                           placeholder="Confirm Password" required="">
                 </p>
-                <button class="btn btn-lg color2-btn btn-block" type="submit">Sign up</button>
+                <button class="btn btn-lg btn-block bttns" type="submit">Потврда</button>
             </form>
-            <a href="/login" class="btn btn-block color6-btn">Already have an account? Login here!</a>
+            <a href="/login" class="btn btn-block bttns">Веќе имате профил? Логирајте се тука!</a>
         </div>
     </div>
 </div>
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ul>
+                    <li><a href="/">За Нас</a></li>
+                    <li><a href="/">ЧПП</a></li>
+                    <li><a href="/">Контакт</a></li>
+                    <li><a href="/"></a></li>
+                    <p>&copy; Сите права задржани. <a href="/">Eaty's Скопје</a></p>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
 
 </body>
 </html>

@@ -8,10 +8,7 @@ import com.example.eatys_app.service.MeniService;
 import com.example.eatys_app.service.ObrokService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -34,6 +31,18 @@ public class ObrokController {
         List<Obrok> obroci= this.obrokService.listAll();
         List<Meni> menija= this.meniService.listAll();
         List<Cena> ceni= this.cenaService.listAll();
+
+        model.addAttribute("obroci", obroci);
+        model.addAttribute("menija", menija);
+        model.addAttribute("ceni", ceni);
+        return "obroci.html";
+    }
+
+    @PostMapping( "/obroci/{id}/show" )
+    public String showListMenijaObroci(@PathVariable(required = false) Integer id,Model model){
+        List<Obrok> obroci= this.obrokService.listAll();
+        List<Meni> menija= this.meniService.listAll();
+        List<Cena> ceni= this.cenaService.listCeniByObrok(id);
 
         model.addAttribute("obroci", obroci);
         model.addAttribute("menija", menija);

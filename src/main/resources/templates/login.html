@@ -15,64 +15,125 @@
             margin-top: 5vh;
         }
 
+        body {
+            background-color: rgb(24, 25, 26);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 15px 0;
+            color: white;
+            background: #262626;
+        }
+
+        footer li {
+            float: left;
+            padding: 0 10px;
+            list-style: none;
+        }
+
+        footer a {
+            color: white;
+        }
+
+        footer p {
+            float: right;
+        }
+
+        .linkovi {
+            text-decoration: none;
+            color: white;
+            padding: 0 10px;
+        }
+
+        .lists {
+            list-style-type: none;
+        }
+
+        .bttns {
+            color: white;
+        }
+
     </style>
 
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand ml-4" href="/">Eaty's</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item ">
-                <a class="nav-link" href="/">Почетна <span class="sr-only"></span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/menija">Менија</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/obroci">Оброци</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/login">Login</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/logout">Logout</a>
-            </li>
-        </ul>
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Eaty's</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mynavbar">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/menija">Менија</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/obroci">Оброци</a>
+                </li>
+            </ul>
+            <form class="d-flex">
+                <li class="lists"><a class="linkovi" href="/register">Регистрација</a></li>
+            </form>
+        </div>
     </div>
 </nav>
 
 
 <div  xmlns:th="http://www.thymeleaf.org">
     <div class="d-flex text-center container justify-content-center">
-        <div class="width1">
+        <div class="width1 bg-dark">
 
             <form class="form-signin custom-inline" method="post" action="/login">
-                <h2 class="form-signin-heading align-self-top">Sign in</h2>
+                <h2 class="form-signin-heading align-self-top">Логин</h2>
+                <br>
                 <p>
-                    <label for="username" class="sr-only">Username</label>
+                    <label for="username" class="sr-only">Корисничко име:</label>
+                    <br>
                     <input type="text" id="username" name="username" class="form-control" placeholder="Username" required=""
                            autofocus="">
                 </p>
                 <p>
-                    <label for="password" class="sr-only">Password</label>
+                    <label for="password" class="sr-only">Лозинка:</label>
+                    <br>
+
                     <input type="password" id="password" name="password" class="form-control" placeholder="Password"
                            required="">
                 </p>
 
                 <div th:text="${param.error}" class="text-danger"></div>
-
-                <button id="submit" class="btn  color2-btn" type="submit">Sign in</button>
+                <button id="submit" class="btn bttns" type="submit">Потврда</button>
             </form>
-            <a href="/register" class="btn color2-btn">Register here</a>
+            <a href="/register" class="btn bttns">Регистрирајте нов профил</a>
         </div>
     </div>
 </div>
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ul>
+                    <li><a href="/">За Нас</a></li>
+                    <li><a href="/">ЧПП</a></li>
+                    <li><a href="/">Контакт</a></li>
+                    <li><a href="/"></a></li>
+                    <p>&copy; Сите права задржани. <a href="/">Eaty's Скопје</a></p>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
 
 </body>
 </html>

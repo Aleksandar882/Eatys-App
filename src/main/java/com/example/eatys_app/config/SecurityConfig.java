@@ -29,11 +29,6 @@ public class SecurityConfig {
     }
 
 
-//    @Bean
-//    public WebSecurityCustomizer webSecurityCustomizer() throws Exception {
-//        // TODO: If you are implementing the security requirements, remove this following line
-//        //web.ignoring().antMatchers("/**");
-//    }
 
 
     @Bean
@@ -41,7 +36,7 @@ public class SecurityConfig {
 
         http.csrf().disable()
                 .authorizeHttpRequests ()
-                .requestMatchers ("/", "/restorani", "/menija", "/obroci", "/register").permitAll()
+                .requestMatchers ("/", "/restorani", "/menija", "/obroci", "/register", "/obroci/{id}/show").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()

@@ -17,4 +17,6 @@ public interface ObrokService {
 
     Obrok delete(Integer id);
 
+    List<Obrok> listObrociByMeni(Integer meniId);
+
 }
