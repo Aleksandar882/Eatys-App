@@ -1,13 +1,7 @@
 package com.example.eatys_app.service;
 
-import com.example.eatys_app.model.Kupuvac;
-import com.example.eatys_app.model.Naracka;
-import com.example.eatys_app.model.Obrok;
-import com.example.eatys_app.model.SeSostoiOd;
-import com.example.eatys_app.model.exceptions.InvalidObrokIdException;
-import com.example.eatys_app.model.exceptions.KupuvacNotFoundException;
-import com.example.eatys_app.model.exceptions.NarackaNotFoundException;
-import com.example.eatys_app.model.exceptions.ObrokNotFound;
+import com.example.eatys_app.model.*;
+import com.example.eatys_app.model.exceptions.*;
 import com.example.eatys_app.repository.*;
 import org.springframework.stereotype.Service;
 
@@ -21,13 +15,15 @@ public class NarackaServiceImpl implements NarackaService{
     private final NarackaRepository narackaRepository;
     private final CenaRepository cenaRepository;
     private final SeSostoiOdRepository seSostoiOdRepository;
+    private final KorisnikRepository korisnikRepository;
 
-    public NarackaServiceImpl(KupuvacRepository kupuvacRepository, ObrokRepository obrokRepository, NarackaRepository narackaRepository, CenaRepository cenaRepository, SeSostoiOdRepository seSostoiOdRepository) {
+    public NarackaServiceImpl(KupuvacRepository kupuvacRepository, ObrokRepository obrokRepository, NarackaRepository narackaRepository, CenaRepository cenaRepository, SeSostoiOdRepository seSostoiOdRepository, KorisnikRepository korisnikRepository) {
         this.kupuvacRepository = kupuvacRepository;
         this.obrokRepository = obrokRepository;
         this.narackaRepository = narackaRepository;
         this.cenaRepository = cenaRepository;
         this.seSostoiOdRepository = seSostoiOdRepository;
+        this.korisnikRepository = korisnikRepository;
     }
 
     @Override

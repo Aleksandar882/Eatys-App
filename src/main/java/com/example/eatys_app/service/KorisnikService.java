@@ -7,4 +7,6 @@ public interface KorisnikService extends UserDetailsService {
 
 
     Korisnik register(String ime, String prezime, String password, String repeatPassword);
+
+    Korisnik FindByName(String ime);
 }

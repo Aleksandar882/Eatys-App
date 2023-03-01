@@ -116,7 +116,7 @@
 <div id="divche">
     <div>
         <br>
-        <a href="/restorani/add" class="btn btn-primary">Додади нов ресторан</a>
+        <a href="/restorani/add" class="btn btn-primary" th:if="${korisnik?.ime == 'Ace'}">Додади нов ресторан</a>
         <span id="spanche">Ресторани</span>
     </div><br>
     <table class="table table-striped table-dark">
@@ -134,10 +134,10 @@
             <td class="align-middle" th:text="${restoran.ime}">[restoran.ime]</td>
             <td class="align-middle" th:text="${restoran.rejting}"> [restoran.rejting]</td>
             <td class="align-middle" th:text="${restoran.adresa}">[restoran.adresa]</td>
-            <td class="align-middle"><a th:href="@{'/restorani/{id}/edit' (id=${restoran.id})}"  class="btn btn-info btn-sm pr-5" >Едитирај</a></td>
+            <td class="align-middle"><a th:href="@{'/restorani/{id}/edit' (id=${restoran.id})}"  class="btn btn-info btn-sm pr-5" th:if="${korisnik?.ime == 'Ace'}" >Едитирај</a></td>
             <td class="align-middle">
                 <form method="POST" th:action="@{'/restorani/{id}/delete' (id=${restoran.id})}">
-                    <button type="submit" class="btn btn-danger btn-sm mb-3 formche">Избриши</button>
+                    <button type="submit" class="btn btn-danger btn-sm mb-3 formche" th:if="${korisnik?.ime == 'Ace'}">Избриши</button>
                 </form>
             </td>
         </tr>

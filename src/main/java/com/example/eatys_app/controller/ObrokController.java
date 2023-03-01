@@ -1,11 +1,14 @@
 package com.example.eatys_app.controller;
 
 import com.example.eatys_app.model.Cena;
+import com.example.eatys_app.model.Korisnik;
 import com.example.eatys_app.model.Meni;
 import com.example.eatys_app.model.Obrok;
 import com.example.eatys_app.service.CenaService;
+import com.example.eatys_app.service.KorisnikService;
 import com.example.eatys_app.service.MeniService;
 import com.example.eatys_app.service.ObrokService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,19 +21,27 @@ public class ObrokController {
     private final ObrokService obrokService;
     private final MeniService meniService;
     private final CenaService cenaService;
+    private final KorisnikService korisnikService;
 
 
-    public ObrokController(ObrokService obrokService, MeniService meniService, CenaService cenaService) {
+    public ObrokController(ObrokService obrokService, MeniService meniService, CenaService cenaService, KorisnikService korisnikService) {
         this.obrokService = obrokService;
         this.meniService = meniService;
         this.cenaService = cenaService;
+        this.korisnikService = korisnikService;
     }
 
     @GetMapping( "/obroci" )
-    public String showList(Model model){
+    public String showList(Model model, HttpServletRequest req){
         List<Obrok> obroci= this.obrokService.listAll();
         List<Meni> menija= this.meniService.listAll();
         List<Cena> ceni= this.cenaService.listAll();
+        String username = req.getRemoteUser();
+        if(username!=null) {
+            Korisnik korisnik = this.korisnikService.FindByName(username);
+            model.addAttribute("korisnik", korisnik);
+        }
+
 
         model.addAttribute("obroci", obroci);
         model.addAttribute("menija", menija);

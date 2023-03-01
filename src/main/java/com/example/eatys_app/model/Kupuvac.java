@@ -19,6 +19,13 @@ public class Kupuvac extends Korisnik{
     @OneToMany(mappedBy = "kupuvac")
     private Set<Rezervacija> rezervacii = new LinkedHashSet<>();
 
+    public Kupuvac() {
+    }
+
+    public Kupuvac(String ime, String prezime, String password) {
+        super(ime, prezime, password);
+    }
+
     public String getTel_broj() {
         return tel_broj;
     }

@@ -122,10 +122,10 @@
     <div>
         <br>
         <!-- ForumUsersController.showAdd (Only ADMIN can see this element)-->
-        <a href="/obroci/add" class="btn btn-info" >
+        <a href="/obroci/add" class="btn btn-info" th:if="${korisnik?.ime == 'Ace'}" >
             Додади нов оброк
         </a>
-        <a href="/ceni" class="btn" id="prpl" >
+        <a href="/ceni" class="btn" id="prpl" th:if="${korisnik?.ime == 'Ace'}" >
             Едитирај цена на оброк
         </a>
         <h2 class="text-center">Оброци</h2>
@@ -153,10 +153,10 @@
             <td class="align-middle" th:text="${cena.CenaIznos}">[cena.CenaIznos]</td>
             <td class="align-middle" th:text="${cena.CenaVaziOd}">[cena.VaziOd]</td>
             <td class="align-middle" th:text="${cena.CenaVaziDo}">[cena.VaziOd]</td>
-            <td class="align-middle"><a th:href="@{'/obroci/{id}/edit' (id=${cena.obrok.id})}"  class="btn btn-warning btn-sm pr-5" >Едитирај</a></td>
+            <td class="align-middle"><a th:href="@{'/obroci/{id}/edit' (id=${cena.obrok.id})}"  class="btn btn-warning btn-sm pr-5" th:if="${korisnik?.ime == 'Ace'}" >Едитирај</a></td>
             <td class="align-middle">
                 <form method="POST" th:action="@{'/obroci/{id}/delete' (id=${cena.obrok.id})}" >
-                    <button type="submit" class="btn btn-danger btn-sm mb-3 formche">Избриши</button>
+                    <button type="submit" class="btn btn-danger btn-sm mb-3 formche" th:if="${korisnik?.ime == 'Ace'}">Избриши</button>
                 </form>
             </td>
             <td class="align-middle">
